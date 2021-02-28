@@ -6,24 +6,27 @@ public class Solution {
 
     // Complete the arrayManipulation function below.
     static long arrayManipulation(int n, int[][] queries) {
-        long[] output = new long[n];
+        long[] slope = new long[n];
         
         for (int i=0; i<queries.length; i++) {
             int start = queries[i][0];
             int end = queries[i][1];
             int add = queries[i][2];
-            for (int j=start; j<=end; j++) {
-                output[j-1] += add;
+            slope[start-1] += add;
+            if (end<slope.length) {
+                slope[end] -= add;
             }
         }
         
         long max = 0;
-        for (int i=0; i<output.length; i++) {
-            if (output[i] > max) {
-                max = output[i];
+        long sum = 0;
+        for (int i=0; i<slope.length; i++) {
+            sum += slope[i];
+            if (sum > max) {
+                max = sum;
             }
         }
-        System.out.println(Arrays.toString(output));
+        //System.out.println(Arrays.toString(slope));
 
         return max;
     }
