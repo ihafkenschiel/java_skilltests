@@ -13,20 +13,25 @@ public class Solution {
     // Complete the minimumBribes function below.
     static void minimumBribes(int[] q) {
         
+        boolean changed = false;
         int[] numSwaps = new int[q.length];
         Arrays.fill(numSwaps, 0);
     
-        // Put array elements back in order
-        for (int i=0; i<q.length-1; i++) {
-            if (q[i] > q[i+1]) {
-                int bigger = q[i];
-                q[i] = q[i+1];
-                q[i+1] = bigger;
-                numSwaps[bigger-1]++;
+        do {
+            changed = false;
+            // Put array elements back in order
+            for (int i=0; i<q.length-1; i++) {
+                if (q[i] > q[i+1]) {
+                    int bigger = q[i];
+                    q[i] = q[i+1];
+                    q[i+1] = bigger;
+                    numSwaps[bigger-1]++;
+                    changed = true;
+                }
             }
-        }
+        } while (changed); // keep looping until no more updates
         
-        //System.out.println(Arrays.toString(numSwaps));
+        System.out.println(Arrays.toString(numSwaps));
 
         int maxNumSwaps = 0;
         for (int curNumSwaps : numSwaps) {
@@ -52,5 +57,11 @@ public class Solution {
         
         int[] inp2 = {2, 5, 1, 3, 4};
         minimumBribes(inp2);
+
+        int[] inp3 = {5, 1, 2, 3, 7, 8, 6, 4};
+        minimumBribes(inp3);
+
+        int[] inp4 = {1, 2, 5, 3, 7, 8, 6, 4};
+        minimumBribes(inp4);
     }
 }
