@@ -21,16 +21,29 @@ class Solution {
             } 
         }
 
-        System.out.println(Arrays.toString(prime));
+        // System.out.println(Arrays.toString(prime));
 
         // Print all prime numbers 
-        for(int i = 2; i <= N; i++) { 
-            if(prime[i] == true) 
-                System.out.print(i + " "); 
-        } 
-        System.out.println("");
+        // for(int i = 2; i <= N; i++) { 
+        //     if(prime[i] == true) 
+        //         System.out.print(i + " "); 
+        // } 
 
         return prime;
+    }
+
+    static int getNumPrimes(boolean[] primes, int beg, int end) {
+        System.out.println("\nFrom " + beg + " to " + end);
+
+        int count = 0;
+        System.out.print("Primes: ");
+        for(int i = beg; i <= end; i++) { 
+            if(primes[i] == true) {
+                System.out.print(i + ", ");
+                count++;
+            }
+        }
+        return count;
     }
 
     static int[] solution(int N, int[] P, int[] Q) {
@@ -38,11 +51,14 @@ class Solution {
 
         boolean[] primes = getPrimeSieve(N);
 
-        int[] result = new int[3];
+        int[] result = new int[P.length];
+
+        for (int i=0; i<P.length; i++){
+            result[i] = getNumPrimes(primes, P[i], Q[i]);
+        }
 
         return result;
     }
-
     public static void main(String[] args) {
         int [] arr1 = {1,4,6};
         int [] arr2 = {26,10,20};
