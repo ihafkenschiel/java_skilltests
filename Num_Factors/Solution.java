@@ -1,4 +1,4 @@
-package Find_Prime;
+package Num_Factors;
 
 // you can also use imports, for example:
 // import java.util.*;
@@ -10,21 +10,25 @@ class Solution {
     static int solution(int N) {
         // write your code in Java SE 8
 
-        System.out.println("---N: " + N);
+        // System.out.println("N: " + N);
 
         if (N==1) {
             return 1;
         }
 
         int factors = 2; // Always include 1 and N
+        int maxFactors = (int)Math.sqrt(N);
 
-        for (int i=2; i<=N/2; i++) {
+        for (int i=2; i<=maxFactors; i++) {
             if (N % i == 0) {
-                factors += 1; // The number and its result
+                if (N/i == i) { // multiplying itself
+                    factors ++;
+                } else {
+                    factors += 2; // The number and its result
+                }
                 System.out.println("i: " + i);
             }
         }
-
 
         return factors;
 
@@ -34,6 +38,9 @@ class Solution {
         System.out.println(solution(1));
         System.out.println(solution(2));
         System.out.println(solution(10));
+        System.out.println(solution(57));
+        System.out.println(solution(100));
+        System.out.println(solution(99999999));
     }
 }
 
