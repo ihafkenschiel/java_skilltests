@@ -26,7 +26,7 @@ class Solution {
                 } else {
                     factors += 2; // The number and its result
                 }
-                System.out.println("i: " + i);
+                // System.out.println("i: " + i);
             }
         }
 
@@ -39,8 +39,10 @@ class Solution {
         System.out.println(solution(2));
         System.out.println(solution(10));
         System.out.println(solution(57));
-        System.out.println(solution(100));
-        System.out.println(solution(99999999));
+        System.out.println(solution(100)); // 9
+        System.out.println(solution(99999999)); // 48
+        System.out.println(solution(2147483646)); // 192
+        System.out.println(solution(2147483647)); // 2
     }
 }
 
