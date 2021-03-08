@@ -32,6 +32,36 @@ class Solution {
         return prime;
     }
 
+    // Utility function to check whether
+    // number is semiprime or not
+    static boolean isSemiprime(int num)
+    {
+        int cnt = 0;
+     
+        for (int i = 2; cnt < 2 && 
+                     i * i <= num; ++i)
+                      
+            while (num % i == 0){
+                num /= i;
+                 
+                // Increment count
+                // of prime numbers
+                ++cnt;
+                }
+     
+        // If number is greater than 1, 
+        // add it to the count variable 
+        // as it indicates the number 
+        // remain is prime number
+        if (num > 1)
+            ++cnt;
+     
+        // Return '1' if count is equal 
+        // to '2' else return '0'
+        return cnt == 2;
+    }
+     
+
     static int getNumPrimes(boolean[] primes, int beg, int end) {
         System.out.println("\nFrom " + beg + " to " + end);
 
@@ -49,12 +79,19 @@ class Solution {
     static int[] solution(int N, int[] P, int[] Q) {
         // write your code in Java SE 8
 
-        boolean[] primes = getPrimeSieve(N);
+        // boolean[] primes = getPrimeSieve(N);
 
         int[] result = new int[P.length];
 
         for (int i=0; i<P.length; i++){
-            result[i] = getNumPrimes(primes, P[i], Q[i]);
+            // result[i] = getNumPrimes(primes, P[i], Q[i]);
+            int count = 0;
+            for (int j=P[i]; j<=Q[i]; j++) {
+                if (isSemiprime((j))) {
+                    count++;
+                }
+            }
+            result[i] = count;
         }
 
         return result;
